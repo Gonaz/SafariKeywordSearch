@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Safari Keyword Search</title>
+	<script type="text/javascript" charset="utf-8">
+
+safari.application.addEventListener('beforeSearch', function(evt) {
+	if(evt.query.length < 3 || evt.query.charAt(1) != ' '){
+		newUrl = "https://www.google.com/search?q=" + evt.query;
+	} else {
+		keyword = evt.query.charAt(0);
+		query = encodeURIComponent(evt.query.substring(2));
+		newUrl = query;
+
+		switch (keyword){
+			case 'g':
+				newUrl = "https://www.google.com/search?q=" + query;
+				break;
+			case 'n':
+				newUrl = "https://nl.wikipedia.org/w/index.php?search=" + query;
+				break;
+			case 'w':
+				newUrl = "https://en.wikipedia.org/w/index.php?search=" + query;
+				break;
+			case 'i':
+				newUrl = "http://www.imdb.com/find?q=" + query;
+				break;
+			case 'a':
+				newUrl = "http://www.allmusic.com/search/all/" + query;
+				break;
+			case 'y':
+				newUrl = "http://www.youtube.com/results?search_query=" + query;
+				break;
+		}
+	}
+
+	evt.preventDefault();
+	evt.target.url = newUrl;
+}, false);
+ 
+</script>
+</head>
+<body> </body>
+</html>
