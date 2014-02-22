@@ -31,6 +31,12 @@ safari.application.addEventListener('beforeSearch', function(evt) {
 			case 'y':
 				newUrl = "http://www.youtube.com/results?search_query=" + query;
 				break;
+			case 'd':
+				newUrl = "https://duckduckgo.com/?q=" + query;
+				break;
+			case 'p':
+				newUrl = "http://pirateproxy.net/search/" + query + "/0/7/0";
+				break;
 		}
 	}
 
